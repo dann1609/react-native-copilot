@@ -69,7 +69,8 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
       stopOnOutsideClick = false,
       arrowColor = "#fff",
       arrowSize = ARROW_SIZE,
-      margin = MARGIN
+      margin = MARGIN,
+      extraComponent: ExtraComponent
     },
     ref
   ) {
@@ -291,6 +292,7 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
       >
         <View style={styles.container} onLayout={handleLayoutChange}>
           {contentVisible && renderMask()}
+          {contentVisible && !!ExtraComponent && <ExtraComponent />}
           {contentVisible && renderTooltip()}
         </View>
       </Modal>

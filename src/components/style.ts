@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     width: STEP_NUMBER_DIAMETER,
     height: STEP_NUMBER_DIAMETER,
     overflow: "hidden",
-    zIndex: ZINDEX + 1,
+    zIndex: ZINDEX + 2,
   },
   stepNumber: {
     flex: 1,
