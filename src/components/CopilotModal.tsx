@@ -69,7 +69,8 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
       stopOnOutsideClick = false,
       arrowColor = "#fff",
       arrowSize = ARROW_SIZE,
-      margin = MARGIN
+      margin = MARGIN,
+      onMaskClick = () =>{}
     },
     ref
   ) {
@@ -259,6 +260,7 @@ export const CopilotModal = forwardRef<CopilotModalHandle, Props>(
     };
 
     const handleMaskClick = () => {
+      onMaskClick()
       if (stopOnOutsideClick) {
         handleStop();
       }

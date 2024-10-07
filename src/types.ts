@@ -80,4 +80,5 @@ export interface CopilotOptions {
   margin?: number
   stopOnOutsideClick?: boolean;
   backdropColor?: string;
+  onMaskClick?: () => void;
 }
