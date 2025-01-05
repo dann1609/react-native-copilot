@@ -9,6 +9,7 @@ interface Props {
   text: string;
   children: React.ReactElement<any>;
   active?: boolean;
+  borderRadius?: number;
 }
 
 export const CopilotStep = ({
@@ -17,6 +18,7 @@ export const CopilotStep = ({
   text,
   children,
   active = true,
+  borderRadius
 }: Props) => {
   const registeredName = useRef<string | null>(null);
   const { registerStep, unregisterStep } = useCopilot();
@@ -61,10 +63,11 @@ export const CopilotStep = ({
         measure,
         wrapperRef,
         visible: true,
+        borderRadius
       });
       registeredName.current = name;
     }
-  }, [name, order, text, registerStep, unregisterStep, active]);
+  }, [name, order, text, borderRadius, registerStep, unregisterStep, active]);
 
   useEffect(() => {
     if (active) {

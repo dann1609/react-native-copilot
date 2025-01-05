@@ -17,15 +17,25 @@ const defaultSvgPath: SvgMaskPathFunction = ({
   size,
   position,
   canvasSize,
+  step
 }): string => {
   const positionX = (position.x as any)._value as number;
   const positionY = (position.y as any)._value as number;
   const sizeX = (size.x as any)._value as number;
   const sizeY = (size.y as any)._value as number;
+  const radius = step?.borderRadius || 0;
 
-  return `M0,0H${canvasSize.x}V${canvasSize.y}H0V0ZM${positionX},${positionY}H${
-    positionX + sizeX
-  }V${positionY + sizeY}H${positionX}V${positionY}Z`;
+  return `M0,0H${canvasSize.x}V${canvasSize.y}H0V0ZM${positionX + radius},${positionY}H${
+    positionX + sizeX - radius
+  }A${radius},${radius} 0 0 1 ${positionX + sizeX},${positionY + radius}V${
+    positionY + sizeY - radius
+  }A${radius},${radius} 0 0 1 ${positionX + sizeX - radius},${
+    positionY + sizeY
+  }H${positionX + radius}A${radius},${radius} 0 0 1 ${positionX},${
+    positionY + sizeY - radius
+  }V${positionY + radius}A${radius},${radius} 0 0 1 ${positionX + radius},${
+    positionY
+  }Z`;
 };
 
 export const SvgMask = ({

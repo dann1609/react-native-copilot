@@ -186,13 +186,15 @@ var init_SvgMask = __esm({
     defaultSvgPath = ({
       size,
       position,
-      canvasSize
+      canvasSize,
+      step
     }) => {
       const positionX = position.x._value;
       const positionY = position.y._value;
       const sizeX = size.x._value;
       const sizeY = size.y._value;
-      return `M0,0H${canvasSize.x}V${canvasSize.y}H0V0ZM${positionX},${positionY}H${positionX + sizeX}V${positionY + sizeY}H${positionX}V${positionY}Z`;
+      const radius = (step == null ? void 0 : step.borderRadius) || 0;
+      return `M0,0H${canvasSize.x}V${canvasSize.y}H0V0ZM${positionX + radius},${positionY}H${positionX + sizeX - radius}A${radius},${radius} 0 0 1 ${positionX + sizeX},${positionY + radius}V${positionY + sizeY - radius}A${radius},${radius} 0 0 1 ${positionX + sizeX - radius},${positionY + sizeY}H${positionX + radius}A${radius},${radius} 0 0 1 ${positionX},${positionY + sizeY - radius}V${positionY + radius}A${radius},${radius} 0 0 1 ${positionX + radius},${positionY}Z`;
     };
     SvgMask = ({
       size,
@@ -1071,7 +1073,8 @@ var CopilotStep = ({
   order,
   text,
   children,
-  active = true
+  active = true,
+  borderRadius
 }) => {
   const registeredName = (0, import_react11.useRef)(null);
   const { registerStep, unregisterStep } = useCopilot();
@@ -1106,11 +1109,12 @@ var CopilotStep = ({
         order,
         measure,
         wrapperRef,
-        visible: true
+        visible: true,
+        borderRadius
       });
       registeredName.current = name;
     }
-  }, [name, order, text, registerStep, unregisterStep, active]);
+  }, [name, order, text, borderRadius, registerStep, unregisterStep, active]);
   (0, import_react11.useEffect)(() => {
     if (active) {
       return () => {

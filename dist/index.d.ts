@@ -10,6 +10,7 @@ interface Step {
     wrapperRef: React.RefObject<NativeMethods>;
     measure: () => Promise<LayoutRectangle>;
     text: string;
+    borderRadius?: number;
 }
 interface ValueXY {
     x: number;
@@ -53,8 +54,9 @@ interface Props {
     text: string;
     children: React__default.ReactElement<any>;
     active?: boolean;
+    borderRadius?: number;
 }
-declare const CopilotStep: ({ name, order, text, children, active, }: Props) => React__default.ReactElement<any, string | React__default.JSXElementConstructor<any>>;
+declare const CopilotStep: ({ name, order, text, children, active, borderRadius }: Props) => React__default.ReactElement<any, string | React__default.JSXElementConstructor<any>>;
 
 type Events = {
     start: undefined;
